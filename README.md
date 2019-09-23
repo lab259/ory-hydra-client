@@ -1,4 +1,4 @@
-# go-package-boilerplate [![CircleCI](https://circleci.com/gh/lab259/go-package-boilerplate.svg?style=shield&circle-token=224f68e222b4a6abeb01f2d0dda3b4cf264b806e)](https://circleci.com/gh/lab259/go-package-boilerplate)
+# ory-hydra-client [![CircleCI](https://circleci.com/gh/lab259/ory-hydra-client.svg?style=shield&circle-token=224f68e222b4a6abeb01f2d0dda3b4cf264b806e)](https://circleci.com/gh/lab259/ory-hydra-client)
 
 > See here [how to create a repository from a template](https://help.github.com/en/articles/creating-a-repository-from-a-template).
 
@@ -16,20 +16,20 @@ What things you need to setup the project:
 Close the repository:
 
 ```bash
-git clone git@github.com:lab259/go-package-boilerplate.git
+git clone git@github.com:lab259/ory-hydra-client.git
 ```
 
 Now, the dependencies must be installed.
 
 ```
-cd go-package-boilerplate && go mod download
+cd ory-hydra-client && go mod download
 ```
 
 :wink: Finally, you are done to start developing.
 
 ### Running tests
 
-In the `src/github.com/lab259/go-package-boilerplate` directory, execute:
+In the `src/github.com/lab259/ory-hydra-client` directory, execute:
 
 ```bash
 make test

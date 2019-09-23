@@ -1,7 +1,7 @@
-package boilerplate_test
+package hydraclient_test
 
 import (
-	. "github.com/lab259/go-package-boilerplate"
+	. "github.com/lab259/ory-hydra-client"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
