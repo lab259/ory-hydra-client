@@ -1,6 +1,6 @@
-# ory-hydra-client [![CircleCI](https://circleci.com/gh/lab259/ory-hydra-client.svg?style=shield&circle-token=224f68e222b4a6abeb01f2d0dda3b4cf264b806e)](https://circleci.com/gh/lab259/ory-hydra-client)
+[![Actions Status](https://github.com/lab259/ory-hydra-client/workflows/Go/badge.svg)](https://github.com/lab259/ory-hydra-client/actions) [![GoDoc](https://godoc.org/github.com/lab259/ory-hydra-client?status.svg)](http://godoc.org/github.com/lab259/ory-hydra-client) [![Go Report Card](https://goreportcard.com/badge/github.com/lab259/ory-hydra-client)](https://goreportcard.com/report/github.com/lab259/ory-hydra-client)
 
-> See here [how to create a repository from a template](https://help.github.com/en/articles/creating-a-repository-from-a-template).
+# ory-hydra-client
 
 ## Getting Started
 

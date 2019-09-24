@@ -21,7 +21,7 @@ jobs:
         run: go build -v ./...
 
   lint:
-    name: Build
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.12
