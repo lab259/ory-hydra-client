@@ -7,5 +7,5 @@ import (
 )
 
 func TestHydraClient(t *testing.T) {
-	ginkgotest.Init("ory-hydra-client Suite", t)
+	ginkgotest.Init("Hydra Client Test Suite", t)
 }
