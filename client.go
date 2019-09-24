@@ -6,18 +6,21 @@ import (
 
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/gojek/heimdall/hystrix"
-	hydra "github.com/ory/hydra/sdk/go/hydra/client"
+	"github.com/ory/hydra/sdk/go/hydra/client/admin"
 )
 
+// Option represents the hydra client options.
 type Option func(c *Client)
 
+// Client is the hydra client implementation.
 type Client struct {
-	hydra.OryHydra
+	admin.Client
 
 	url    url.URL
 	client *hystrix.Client
 }
 
+// New returns a new instance of hydra Client.
 func New(opts ...Option) *Client {
 	var c Client
 
@@ -34,11 +37,11 @@ func New(opts ...Option) *Client {
 		c.url.Path,
 		[]string{c.url.Scheme},
 		&http.Client{
-			Transport: &hystrixTransport{c.client},
+			Transport: NewHystrixTransport(c.client),
 		},
 	)
 
-	c.OryHydra = *hydra.New(ht, nil)
+	c.Client = *admin.New(ht, nil)
 
 	return &c
 }
@@ -51,7 +54,7 @@ func WithHystrixClient(client *hystrix.Client) Option {
 	}
 }
 
-// WithURL creates an option that defines a host name for the Keto server.
+// WithURL creates an option that defines a host name for the Hydra server.
 func WithURL(u *url.URL) Option {
 	return func(c *Client) {
 		c.url = *u

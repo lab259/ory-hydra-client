@@ -12,12 +12,12 @@ import (
 )
 
 func main() {
-	url, _ := url.Parse("https://hydra.localhost:4445")
+	url, _ := url.Parse("http://hydra.localhost:4445")
 
 	hc := hystrix.NewClient(
-		hystrix.WithHTTPTimeout(10*time.Millisecond),
+		hystrix.WithHTTPTimeout(10*time.Second),
 		hystrix.WithCommandName("ory_hydra"),
-		hystrix.WithHystrixTimeout(1000),
+		hystrix.WithHystrixTimeout(10*time.Second),
 		hystrix.WithMaxConcurrentRequests(30),
 		hystrix.WithErrorPercentThreshold(20),
 	)
@@ -27,14 +27,22 @@ func main() {
 		hydraclient.WithURL(url),
 	)
 
-	response, err := client.Admin.CreateOAuth2Client(admin.NewCreateOAuth2ClientParams().WithBody(&models.Client{
-		ClientID: "foo-bar",
-	}))
+	_, err := client.IsInstanceAlive(admin.NewIsInstanceAliveParams())
 	if err != nil {
-		log.Fatalf("unable to create oauth client: %v", err)
+		log.Fatalf("instance not ready: %s", err)
+	}
+
+	input := admin.NewCreateOAuth2ClientParams().
+		WithBody(&models.Client{
+			ClientID: "foo-bar-xepoj",
+		})
+
+	output, err := client.CreateOAuth2Client(input)
+	if err != nil {
+		log.Fatalf("unable to create oauth client: %s", err)
 	}
 
 	log.Println("Client created:")
-	log.Printf("\t ID:     %s", response.Payload.ClientID)
-	log.Printf("\t Secret: %s", response.Payload.Secret)
+	log.Printf("\t ID:     %s", output.Payload.ClientID)
+	log.Printf("\t Secret: %s", output.Payload.Secret)
 }
