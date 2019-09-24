@@ -5,6 +5,7 @@ go 1.12
 require (
 	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5 // indirect
 	github.com/fatih/color v1.7.0 // indirect
+	github.com/go-openapi/runtime v0.19.4
 	github.com/gojek/heimdall v5.0.2+incompatible
 	github.com/gojektech/heimdall v5.0.2+incompatible // indirect
 	github.com/jamillosantos/macchiato v0.0.0-20171220130318-3be045cc5033

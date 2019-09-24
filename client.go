@@ -1,8 +1,10 @@
 package hydraclient
 
 import (
+	"net/http"
 	"net/url"
 
+	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/gojek/heimdall/hystrix"
 	hydra "github.com/ory/hydra/sdk/go/hydra/client"
 )
@@ -17,19 +19,28 @@ type Client struct {
 }
 
 func New(opts ...Option) *Client {
-	var client Client
+	var c Client
 
 	for _, opt := range opts {
-		opt(&client)
+		opt(&c)
 	}
 
-	if client.client == nil {
-		client.client = hystrix.NewClient()
+	if c.client == nil {
+		c.client = hystrix.NewClient()
 	}
 
-	client.OryHydra = *hydra.New(nil, nil)
+	ht := httptransport.NewWithClient(
+		c.url.Host,
+		c.url.Path,
+		[]string{c.url.Scheme},
+		&http.Client{
+			Transport: &hystrixTransport{c.client},
+		},
+	)
 
-	return &client
+	c.OryHydra = *hydra.New(ht, nil)
+
+	return &c
 }
 
 // WithHystrixClient creates an option that will define the `hystrix.Client`
