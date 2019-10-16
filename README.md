@@ -13,7 +13,7 @@ What things you need to setup the project:
 
 ### Environment
 
-Close the repository:
+Clone the repository:
 
 ```bash
 git clone git@github.com:lab259/ory-hydra-client.git
